@@ -1,12 +1,12 @@
 ---
 # tasks file for ansible-role-locale
 - name: Ensure localisation files for '{{ config_system_locale }}' are available
-  locale_gen:
+  community.general.locale_gen:
     name: "{{ config_system_locale }}"
     state: present
 
 - name: Ensure localisation files for '{{ config_system_language }}' are available
-  locale_gen:
+  community.general.locale_gen:
     name: "{{ config_system_language }}"
     state: present
 
