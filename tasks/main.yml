@@ -27,6 +27,18 @@
   set_fact:
     vc_keymap: "{{ locale_status.stdout | regex_search('VC Keymap: ([^\n]+)', '\\1') | first }}"
 
+- name: Parse 'X11 Layout' from current locale and language configuration
+  set_fact:
+    x11_layout: "{{ locale_status.stdout | regex_search('X11 Layout: ([^\n]+)', '\\1') | first }}"
+
+- name: Parse 'X11 Model' from current locale and language configuration
+  set_fact:
+    x11_model: "{{ locale_status.stdout | regex_search('X11 Model: ([^\n]+)', '\\1') | first }}"
+
+- name: Parse 'X11 Variant' from current locale and language configuration
+  set_fact:
+    x11_variant: "{{ locale_status.stdout | regex_search('X11 Variant: ([^\n]+)', '\\1') | first }}"
+
 - name: Configure locale to '{{ config_system_locale }}' and language to '{{ config_system_language }}'
   become: yes
   command: localectl set-locale LANG={{ config_system_locale }} LANGUAGE={{ config_system_language }}
@@ -36,3 +48,8 @@
   become: yes
   command: localectl set-keymap {{ config_vc_keymap }}
   changed_when: vc_keymap != config_vc_keymap
+
+- name: Configure X11 Keymap to '{{ config_x11_layout }}' '{{ config_x11_model }}' '{{ config_x11_variant }}'
+  become: yes
+  command: localectl set-x11-keymap {{ config_x11_layout }} {{ config_x11_model }} {{ config_x11_variant }}
+  changed_when: x11_layout != config_x11_layout or x11_model != config_x11_model or x11_variant != config_x11_variant

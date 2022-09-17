@@ -4,3 +4,6 @@
 config_system_locale: 'en_US.UTF-8'
 config_system_language: 'en_US.UTF-8'
 config_vc_keymap: 'de-latin1-nodeadkeys'
+config_x11_layout: 'at'
+config_x11_model: 'pc105'
+config_x11_variant: 'nodeadkeys'
