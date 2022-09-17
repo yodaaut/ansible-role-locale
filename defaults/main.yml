@@ -3,3 +3,4 @@
 
 config_system_locale: 'de_AT.UTF-8'
 config_system_language: 'en_US.UTF-8'
+config_vc_keymap: 'de-latin1-nodeadkeys'
