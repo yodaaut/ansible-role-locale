@@ -51,5 +51,5 @@
 
 - name: Configure X11 Keymap to '{{ config_x11_layout }}' '{{ config_x11_model }}' '{{ config_x11_variant }}'
   become: yes
-  command: localectl set-x11-keymap {{ config_x11_layout }} {{ config_x11_model }} {{ config_x11_variant }}
+  command: localectl --no-convert set-x11-keymap {{ config_x11_layout }} {{ config_x11_model }} {{ config_x11_variant }}
   changed_when: x11_layout != config_x11_layout or x11_model != config_x11_model or x11_variant != config_x11_variant
