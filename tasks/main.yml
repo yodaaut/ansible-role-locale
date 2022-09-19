@@ -38,7 +38,7 @@
 - name: Parse 'X11 Variant' from current locale and language configuration
   set_fact:
     x11_variant: "{{ locale_status.stdout | regex_search('X11 Variant: ([^\n]+)', '\\1') |first }}"
-  when: not "{{ locale_status.stdout | regex_search('X11 Variant:') is none }}"
+  when: '"X11 Variant:" in locale_status.stdout'
 
 - name: Configure locale to '{{ config_system_locale }}' and language to '{{ config_system_language }}'
   become: yes
