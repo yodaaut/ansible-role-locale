@@ -32,7 +32,6 @@
 - name: Parse 'LANGUAGE' from current locale and language configuration
   set_fact:
     locale_language: "{{ locale_status.stdout | regex_search('LANGUAGE=([^\n]+)', '\\1') | default([locale_lang], true) | first }}"
-  when: '"LANGUAGE=" in locale_status.stdout'
 
 - name: Parse 'VC Keymap' from current locale and language configuration
   set_fact:
